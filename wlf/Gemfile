@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # Use bootstrap
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
 # Use Vue.js
 gem 'vuejs-rails'
 # Use haml

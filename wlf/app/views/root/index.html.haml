@@ -1,0 +1,41 @@
+= stylesheet_link_tag "root", :media => "all"
+= javascript_include_tag "root"
+%body
+  %nav.navbar.navbar-default{role: "navigation"}
+    .container-fluid
+      .navbar-header
+        %a.navbar-brand{href: "#"}
+          WLF
+      .collapse.navbar-collapse{id: "nav_targets"}
+        %ul.nav.navbar-nav
+          %li
+            %a
+              Work
+          %li
+            %a
+              About
+          %li
+            %a
+              Contact
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a Sign in
+  .slide{id: "main_slide"}
+    %ul
+      %li
+        = image_tag "harine.jpeg"
+    %ul
+      %li
+        = image_tag "harine.jpeg"
+    %ul
+      %li
+        = image_tag "harine.jpeg"
+    :javascript
+    $(function(){
+      $('#main_slide').infiniteslide({
+        'height': 400,
+        'speed': 20,
+        'direction': 'left',
+        'pauseonhover': false
+      });
+    });
