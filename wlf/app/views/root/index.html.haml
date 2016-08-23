@@ -1,5 +1,14 @@
 = stylesheet_link_tag "root", :media => "all"
 = javascript_include_tag "root"
+:javascript
+  $(function(){
+    $('#main_slide').infiniteslide({
+      'height': 400,
+      'speed': 20,
+      'direction': 'left',       
+      'pauseonhover': false
+    });
+  });
 %body
   %nav.navbar.navbar-default{role: "navigation"}
     .container-fluid
@@ -23,19 +32,69 @@
   .slide{id: "main_slide"}
     %ul
       %li
-        = image_tag "harine.jpeg"
-    %ul
+        = image_tag "slide-shoes.jpg"
       %li
-        = image_tag "harine.jpeg"
-    %ul
+        = image_tag "slide-green.jpg"
       %li
-        = image_tag "harine.jpeg"
-    :javascript
-    $(function(){
-      $('#main_slide').infiniteslide({
-        'height': 400,
-        'speed': 20,
-        'direction': 'left',
-        'pauseonhover': false
-      });
-    });
+        = image_tag "slide-town.jpg"
+  .main-contents
+    .container
+      .col-md-4
+        .media
+          .media-left.media-middle
+            %i.fa.fa-shield.fa-4x.fa-blue
+          .media-body
+            %h4.media-heading
+              ダイエットは初めてですか?
+            %p
+              心配しなくても大丈夫.初心者だって痩せられます.私たちがサポートしますよ.あなたが楽しく続けられるように、精一杯尽力します.
+      .col-md-4
+        .media
+          .media-left.media-middle
+            %i.fa.fa-heartbeat.fa-4x.fa-blue
+          .media-body
+            %h4.media-heading
+              毎日適切な運動を
+            %p
+              早く結果を出したいからと言って無理をするのは禁物です.無理をさせない、継続できる仕組みがあります.
+      .col-md-4
+        .media
+          .media-left.media-middle
+            %i.fa.fa-users.fa-4x.fa-blue
+          .media-body
+            %h4.media-heading
+              一人では続きませんよね
+            %p
+              みんなで楽しさも苦労も共有しましょう.一人だと不安でも、仲間がいればきっと楽しく続けられます.
+
+  .signup-contents
+    .container
+      %p
+        test
+
+  .footer{id: "footer"}
+    .footer-contents
+      %ul.navbar-nav.list-inline
+        %li.first
+          %a{href: "#"}
+            About
+        %li
+          %a{href: "#"}
+            Sign in
+        %li
+          %a{href: "#"}
+            Sign up
+        %li
+          %a{href: "#"}
+            Contact
+        %li
+          %a{href: "#"}
+            Help
+    .clearfix
+    %ul.sns-icon.list-inline
+      %li
+        %i.fa.fa-github.fa-2x
+    .copy
+      %span
+        Copyright &#169; 2016.
+
