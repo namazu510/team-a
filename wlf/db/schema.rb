@@ -10,27 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823004324) do
+ActiveRecord::Schema.define(version: 20160823024204) do
+
+  create_table "exercise_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "start_time",  null: false
+    t.datetime "end_time",    null: false
+    t.integer  "step_cnt",    null: false
+    t.float    "calorie",     null: false
+    t.integer  "schedule_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["schedule_id"], name: "index_exercise_logs_on_schedule_id"
+    t.index ["user_id"], name: "index_exercise_logs_on_user_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "start_time", null: false
+    t.datetime "end_time",   null: false
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                                null: false
-    t.string   "email　"
-    t.boolean  "socialId",                            null: false
-    t.boolean  "admin",               default: false, null: false
+    t.string   "name",       null: false
+    t.string   "email"
+    t.boolean  "admin",      null: false
     t.string   "password"
-    t.string   "access_token"
-    t.string   "access_token_secret"
     t.integer  "gender"
     t.float    "height"
     t.integer  "age"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "weights", force: :cascade do |t|
+    t.integer  "user_id"
     t.float    "weight",     null: false
     t.float    "bmi",        null: false
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_weights_on_user_id"
