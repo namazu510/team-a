@@ -3,7 +3,7 @@ body
   padding-top: 70px;
 }
 .container {
-  background-color: #F0F8FF;
+  background-color: #EEEEEE;
 }
 
 .smallest-text
@@ -33,7 +33,6 @@ textarea
   position: center;
   font-size: 16px;
   resize: vertical;
-  max-width: 360;
   padding: 10px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
