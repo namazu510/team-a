@@ -3,23 +3,17 @@
 one:
   name: MyString
   email: MyString
-  socialId: false
   admin: false
   password: MyString
-  access_token: MyString
-  access_token_secret: MyString
-  gender: 
+  gender: 1
   height: 1.5
-  age: 
+  age: 1
 
 two:
   name: MyString
   email: MyString
-  socialId: false
   admin: false
   password: MyString
-  access_token: MyString
-  access_token_secret: MyString
-  gender: 
+  gender: 1
   height: 1.5
-  age: 
+  age: 1

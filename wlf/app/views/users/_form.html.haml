@@ -13,28 +13,19 @@
     = f.label :email
     = f.text_field :email
   .field
-    = f.label :socialId
-    = f.check_box :socialId
-  .field
     = f.label :admin
     = f.check_box :admin
   .field
     = f.label :password
     = f.text_field :password
   .field
-    = f.label :access_token
-    = f.text_field :access_token
-  .field
-    = f.label :access_token_secret
-    = f.text_field :access_token_secret
-  .field
     = f.label :gender
-    = f.text_field :gender
+    = f.number_field :gender
   .field
     = f.label :height
     = f.text_field :height
   .field
     = f.label :age
-    = f.text_field :age
+    = f.number_field :age
   .actions
     = f.submit 'Save'
