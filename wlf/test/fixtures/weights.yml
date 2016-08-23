@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  weight: 1.5
+  bmi: 1.5
+
+two:
+  user: two
+  weight: 1.5
+  bmi: 1.5
