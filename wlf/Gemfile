@@ -19,12 +19,15 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # Use bootstrap
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
 # Use Vue.js
 gem 'vuejs-rails'
 # Use haml
 gem 'haml-rails'
 # convert erb to haml
 gem 'erb2haml'
+# Use Font Awesome Icons
+gem 'font-awesome-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
