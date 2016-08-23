@@ -1,0 +1,62 @@
+body
+{
+  padding-top: 70px;
+}
+.container {
+  background-color: #EEEEEE;
+}
+.account-wall
+{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  background-color: #FFFFFF;
+}
+.running-human
+{
+
+}
+.page-title
+{
+  text-align: center;
+  color: #000;
+  font-size: 60px;
+  font-weight: 600;
+  display: block;
+}
+.subject-title
+{
+  text-align: center;
+  color: #000;
+  font-size: 22px;
+  font-weight: 600;
+  display: block;
+}
+p
+{
+  text-align: center;
+  font-weight: bold;;
+}
+
+#content
+{
+  position: relative;
+  margin: 0 auto;
+  width:auto;
+  height:150px;
+  overflow:hidden;
+  background:#ffffff;
+}
+#rect
+{
+  position: absolute;
+  background:#ffffff;
+  width:auto;
+  padding:10px 0px;
+  text-align:center;
+  color:#ffffff;
+}
