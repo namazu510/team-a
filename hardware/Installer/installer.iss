@@ -6,7 +6,8 @@ DefaultGroupName=WeightLossFat
 UninstallDisplayIcon={app}\WLF.exe
 Compression=lzma2
 SolidCompression=yes
-OutputDir=userdocs:WLF Installer
+OutputBaseFilename=setup
+OutputDir=userdocs:WLFInstaller 
 
 [Files]
 Source:"WLF.exe";DestDir:"{app}"
