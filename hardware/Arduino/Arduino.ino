@@ -1,5 +1,6 @@
 #include <SPI.h>
 
+//ADXL362の通信用マクロ
 #define ADXL362_CS SS
 #define ADXL362_XDATA_L 0x0e
 #define ADXL362_XDATA_H 0x0f
@@ -12,105 +13,153 @@
 #define WRITE 0xa
 #define READ 0xb
 #define READ_FIFO 0xd
-#define SENSING_THRESHOLD 700
 
-#define WALK_MONITOR_TIME 30
-#define WALK_THRESHOLD 7
+//データ送信ピン
+#define SEND_PIN 3
 
-short nx,ny,nz;
-short ox,oy,oz;
+//各種閾値
+#define THRESHOLD_SENSING 700 //足を動かしたという判定用
+#define THRESHOLD_WALK_TIME 30//運動開始を判定する時間
+#define THRESHOLD_WALK_COUNT 7//運動開始を判定する歩数
 
-unsigned long startTime=0;
-unsigned long stepavg=0;
-bool isWalk;
+//センサ値
+short now_x, now_y, now_z;
+short old_x, old_y, old_z;
 
+//運動開始判定前に運動を記録するバッファ
+unsigned long before_time = 0;
+unsigned long before_stepcnt = 0;
+String before_buffer;
+
+//運動開始後のバッファ
 unsigned long stepcnt;
-unsigned long time=-1;
+unsigned long time = -1;
 String buffer;
-String buf2;
-bool isUp;
 
-void regWrite(byte reg, byte val)
-{
+//フラグ
+bool isUp;  //足を上げた
+bool isWalk;//歩いている
+
+//SPI通信でADXL362に値を書き込む
+void regWrite(byte reg, byte val) {
   digitalWrite(ADXL362_CS, LOW);
   SPI.transfer(WRITE);
   SPI.transfer(reg);
   SPI.transfer(val);
   digitalWrite(ADXL362_CS, HIGH);
 }
-byte regRead(byte reg)
-{
+
+//SPI通信でADXL362から値を読み込む
+byte regRead(byte reg) {
   byte ret;
   digitalWrite(ADXL362_CS, LOW);
   SPI.transfer(READ);
   SPI.transfer(reg);
-  ret = SPI.transfer(0); 
-  digitalWrite(ADXL362_CS, HIGH); 
+  ret = SPI.transfer(0);
+  digitalWrite(ADXL362_CS, HIGH);
   return ret;
 }
-void readSensor()
-{
-  nx = regRead(ADXL362_XDATA_H);
-  nx = (nx << 8) | regRead(ADXL362_XDATA_L);
-  ny = regRead(ADXL362_YDATA_H);
-  ny = (ny << 8) | regRead(ADXL362_YDATA_L);
-  nz = regRead(ADXL362_ZDATA_H);
-  nz = (nz << 8) | regRead(ADXL362_ZDATA_L);
+
+//各種値を読み込む
+void readSensor() {
+  //データは8bit×2なのでH側とL側でデータを取得する。
+  now_x = regRead(ADXL362_XDATA_H);
+  now_x = (now_x << 8) | regRead(ADXL362_XDATA_L);
+  now_y = regRead(ADXL362_YDATA_H);
+  now_y = (now_y << 8) | regRead(ADXL362_YDATA_L);
+  now_z = regRead(ADXL362_ZDATA_H);
+  now_z = (now_z << 8) | regRead(ADXL362_ZDATA_L);
 }
-void setup()
-{
-  pinMode(3,INPUT_PULLUP);
-  digitalWrite(SS, HIGH);
-  pinMode(SS, OUTPUT); 
+
+//初期化
+void setup() {
+
+  //IOピンの初期設定
+  pinMode(SEND_PIN, INPUT_PULLUP); //送信用ボタン用ピンをプルアップ入力に設定
+  digitalWrite(SS, HIGH);//ADXL362のスリープ解除
+  pinMode(SS, OUTPUT);
+
+  //SPIの初期設定
   SPI.begin();
   SPI.setBitOrder(MSBFIRST);
-  SPI.setClockDivider(SPI_CLOCK_DIV8); // 8MHz/8 = 1MHz
-  regWrite(ADXL362_FILTER, 0x13); // +-2g range, 100Hz
-  regWrite(ADXL362_POWER_CTL, 0x02); // normal operation, measurement mode
-  readSensor();
-  Serial.begin(9600);
+  SPI.setClockDivider(SPI_CLOCK_DIV8);  //今回のSPI通信では1Mhzを使用
+
+  //センサの初期設定
+  regWrite(ADXL362_FILTER, 0x13);
+  regWrite(ADXL362_POWER_CTL, 0x02);
+  readSensor();   //センサー値を初期化
+
+  //シリアル通信を行おうと試みる
+  Serial.begin(9600);   //シリアル通信を9600bpsで始める
 }
-void loop()
-{
-  ox=nx;oy=ny;oz=nz;
+
+//ループ
+void loop() {
+
+  //センサー値を更新
+  old_x = now_x; old_y = now_y; old_z = now_z;
   readSensor();
-  if(abs(ny-oy)>SENSING_THRESHOLD){
-    
-    if(isUp){
-      if(startTime==-1){
-        startTime=time;
-        stepavg=0;
-        buf2=String();
+
+  //足を動かしたかの判定
+  if (abs(now_y - old_y) > THRESHOLD_SENSING) {
+
+    //センサー値は1歩で上下で2回反応するのでその判定。
+    if (isUp) {
+
+      //運動開始判定
+      if (before_time == -1) { //運動していないという判定であれば
+        before_time = time;
+        before_stepcnt = 0;
+        before_buffer = String(); //今までとりあえず溜め込んでいたバッファを削除
       }
-      if(time-startTime>WALK_MONITOR_TIME*10){
-        startTime=-1;
-        isWalk=false;
+      if (time - before_time > THRESHOLD_WALK_TIME * 10) { //閾値分時間がたっていたら
+        before_time = -1; //運動していないという判定に
+        isWalk = false; //運動終了
       }
-      stepavg++;
-      buf2+=String(String(time/10)+","+String(stepavg)+";");
-      if(stepavg>=WALK_THRESHOLD){
-        if(!isWalk){
-          stepcnt=stepavg;
-          buffer+=buf2;
+      //歩数カウント
+      before_stepcnt++;
+      //バッファに歩行記録を追加
+      before_buffer += String(String(time / 10) + "," + String(before_stepcnt) + ";");
+
+      //一定時間内に一定歩数歩いた場合(運動開始)
+      if (before_stepcnt >= THRESHOLD_WALK_COUNT) {
+
+        //いままで運動していなかったら
+        if (!isWalk) {
+          //運動判定時のカウントは運動時カウントだったということでデータに追加する
+          stepcnt = before_stepcnt;
+          buffer += before_buffer;
         }
-        startTime=-1;
-        isWalk=true;
+
+        //運動判定用のタイマをリセット
+        before_time = -1;
+        //運動している状態へ
+        isWalk = true;
+
       }
-      if(isWalk){
+
+      //運動している判定なら
+      if (isWalk) {
         stepcnt++;
-        buffer+=String(String(time/10)+","+String(stepcnt)+";");
+        buffer += String(String(time / 10) + "," + String(stepcnt) + ";");
+
       }
     }
-    isUp=!isUp;
+    isUp = !isUp; //足の上げ下げを判定
   }
-  
-  if(digitalRead(3)==LOW&&Serial){
-      Serial.println(buffer);
-      buffer=String();
-      stepcnt=0;
-      time=0;
+
+  //転送処理
+  if (digitalRead(SEND_PIN) == LOW && Serial) {
+    Serial.println(buffer);//バッファのデータを転送
+
+    //初期化処理を送信
+    buffer = String();
+    stepcnt = 0;
+    time = 0;
+    before_time = -1;
+    before_stepcnt = 0;
   }
-  delay(100);
-  time++;
+  delay(100);//100ms
+  time++;//100msに1カウント(誤差あり)
 }
 
