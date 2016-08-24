@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'root/index'
   root to: 'root#index'
+  get 'root/index'
+  get 'signup', to: 'users#new'
 
   resources :exercise_logs
   resources :schedules

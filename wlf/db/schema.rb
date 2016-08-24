@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823022621) do
+ActiveRecord::Schema.define(version: 20160823075731) do
+
+  create_table "exercise_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "start_time",  null: false
+    t.datetime "end_time",    null: false
+    t.integer  "step_cnt",    null: false
+    t.float    "calorie",     null: false
+    t.integer  "schedule_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["schedule_id"], name: "index_exercise_logs_on_schedule_id"
+    t.index ["user_id"], name: "index_exercise_logs_on_user_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "start_time", null: false
+    t.datetime "end_time",   null: false
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",       null: false

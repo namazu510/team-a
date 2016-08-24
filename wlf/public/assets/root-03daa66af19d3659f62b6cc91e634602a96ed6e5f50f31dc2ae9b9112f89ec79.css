@@ -1,0 +1,97 @@
+/* line 1, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+body {
+  background-color: #EEEEEE;
+}
+
+/* line 5, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+.navbar-default {
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+}
+
+/* line 13, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+.main_slide ul, .main_slide li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 20, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+.main-contents {
+  margin-top: 10px;
+  height: 250px;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+}
+/* line 28, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+.main-contents .media-heading {
+  margin-top: 30px;
+}
+
+/* line 33, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+.fa-blue {
+  color: #99CCFF;
+}
+
+/* line 37, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+.signup-contents {
+  height: 350px;
+  margin-top: 30px;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  text-align: center;
+}
+/* line 45, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+.signup-contents h2, .signup-contents h3 {
+  color: #888888;
+}
+
+/* line 50, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer {
+  text-align: center;
+  padding: 40px 0;
+  margin-top: 30px;
+  background-color: #FFFFFF;
+}
+/* line 55, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .navbar-nav {
+  margin-left: 30px;
+}
+/* line 57, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .navbar-nav li {
+  border-right: 1px solid #000;
+}
+/* line 59, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .navbar-nav li .first {
+  border-left: 1px solid #000;
+}
+/* line 62, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .navbar-nav li a {
+  color: #666666;
+}
+/* line 67, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .sns-icon {
+  margin-top: 30px;
+}
+/* line 69, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .sns-icon li {
+  padding-left: 20px;
+}
+/* line 72, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .sns-icon li:hover {
+  color: #444444;
+}
+/* line 76, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .copy {
+  margin-top: 20px;
+}
+/* line 78, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/root.scss */
+#footer .copy .span {
+  color: #333;
+}
