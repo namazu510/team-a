@@ -19,15 +19,21 @@ namespace SQL
         public void execute()
         {
             string url = "http://localhost:58306/";
-
-            System.Net.WebClient wc = new System.Net.WebClient();
-            System.Collections.Specialized.NameValueCollection data =
-                new System.Collections.Specialized.NameValueCollection();
-            data.Add("start_time",start.ToString());
-            data.Add("end_time", end.ToString());
-            data.Add("step_cnt", step.ToString());
-            wc.UploadValues(url, data);
-            wc.Dispose();
+            try
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                System.Collections.Specialized.NameValueCollection data =
+                    new System.Collections.Specialized.NameValueCollection();
+                data.Add("start_time", start.ToString());
+                data.Add("end_time", end.ToString());
+                data.Add("step_cnt", step.ToString());
+                wc.UploadValues(url, data);
+                wc.Dispose();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

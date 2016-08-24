@@ -17,10 +17,13 @@
 //データ送信ピン
 #define SEND_PIN 3
 
+//LEDピン
+#define LED_PIN 2
+
 //各種閾値
-#define THRESHOLD_SENSING 700 //足を動かしたという判定用
-#define THRESHOLD_WALK_TIME 30//運動開始を判定する時間
-#define THRESHOLD_WALK_COUNT 7//運動開始を判定する歩数
+#define THRESHOLD_SENSING 730 //足を動かしたという判定用
+#define THRESHOLD_WALK_TIME 15//運動開始を判定する時間
+#define THRESHOLD_WALK_COUNT 4//運動開始を判定する歩数
 
 //センサ値
 short now_x, now_y, now_z;
@@ -76,7 +79,9 @@ void setup() {
 
   //IOピンの初期設定
   pinMode(SEND_PIN, INPUT_PULLUP); //送信用ボタン用ピンをプルアップ入力に設定
-  digitalWrite(SS, HIGH);//ADXL362のスリープ解除
+  pinMode(LED_PIN, OUTPUT); //歩行時に点灯する機能
+  digitalWrite(LED_PIN,LOW);
+  digitalWrite(SS, HIGH);
   pinMode(SS, OUTPUT);
 
   //SPIの初期設定
@@ -115,6 +120,7 @@ void loop() {
       if (time - before_time > THRESHOLD_WALK_TIME * 10) { //閾値分時間がたっていたら
         before_time = -1; //運動していないという判定に
         isWalk = false; //運動終了
+        digitalWrite(LED_PIN,LOW);
       }
       //歩数カウント
       before_stepcnt++;
@@ -135,6 +141,7 @@ void loop() {
         before_time = -1;
         //運動している状態へ
         isWalk = true;
+        digitalWrite(LED_PIN,HIGH);
 
       }
 
