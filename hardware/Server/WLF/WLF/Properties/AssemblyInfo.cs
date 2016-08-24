@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("Resident")]
+[assembly: AssemblyTitle("WLF")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Resident")]
+[assembly: AssemblyProduct("WLF")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // このプロジェクトが COM に公開される場合、次の GUID が typelib の ID になります
-[assembly: Guid("8b45f6f4-f221-45ed-ba16-91f9b7557e1f")]
+[assembly: Guid("f58af9a8-4d0a-40de-9f9e-b7a3ec4cb66a")]
 
 // アセンブリのバージョン情報は次の 4 つの値で構成されています:
 //

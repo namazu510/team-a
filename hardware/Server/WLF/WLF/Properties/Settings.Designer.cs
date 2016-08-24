@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resident.Properties
+namespace WLF.Properties
 {
 
 
