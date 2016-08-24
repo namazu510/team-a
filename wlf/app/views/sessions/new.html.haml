@@ -26,10 +26,13 @@
       .signup-header
         = image_tag "logo.png", :size => "75x48"
         %h2
-          新規アカウント登録
+          ログイン
+        = flash.each do |message_type, message|
+          .alert{class: "alert-#{message_type}"}
+            = message
       = render 'form'
-      %a.link-already-account{href: "/login"}
-        すでにアカウントを持っている
+      %a.link-already-account
+        パスワードを忘れてしまった？
         
   .footer{id: "footer"}
     .footer-contents
