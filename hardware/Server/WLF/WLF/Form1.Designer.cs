@@ -40,7 +40,7 @@
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Text = "WeightLossFat";
             this.notifyIcon1.Visible = true;
             // 
             // contextMenuStrip1
@@ -48,7 +48,7 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.終了ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(99, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
             this.contextMenuStrip1.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
             // 
             // 終了ToolStripMenuItem
