@@ -36,13 +36,8 @@
 
       <div class="col-sm-3 col-md-offset-1">
         <div class="panel"  draggable="true">
-        <p>ここにスケジューラー（1日分）</p>
         <div id="message" class="ui-corner-all"></div>
-      	<div id="calendar_selection" class="ui-corner-all">
-      		<strong>登録された予定の確認</strong>
-      		<select id="data_source">
-      		</select>
-      	</div>
+      	<div id="calendar_selection" class="ui-corner-all"></div>
       	<div id='calendar'></div>
       </div>
       </div>
@@ -100,6 +95,27 @@ var year = new Date().getFullYear();
 var month = new Date().getMonth();
 var day = new Date().getDate();
 
+var eventData1 = {
+    options: {
+      timeslotsPerHour: 4,
+      timeslotHeight: 20
+    },
+    events : [
+
+    ]
+  };
+
+var eventData2 = {
+    options: {
+      timeslotsPerHour: 3,
+      timeslotHeight: 30
+    },
+    events : [
+
+    ]
+  };
+
+
 $(document).ready(function() {
 
   var $calendar = $('#calendar').weekCalendar({
@@ -133,7 +149,6 @@ $(document).ready(function() {
   $("#data_source").change(function() {
     $calendar.weekCalendar("refresh");
     updateMessage();
-
   });
 
   function updateMessage() {
