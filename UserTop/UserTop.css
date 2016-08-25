@@ -2,24 +2,16 @@ body
 {
   padding-top: 70px;
 }
-.panel
-{
-    display: table-cell;
-  	vertical-align: middle;
-    text-align: center;
-    background-color: #000;
-}
 .container
 {
-  max-width: 1000px;
-  height: 200px;
-  display: table-cell;
-	vertical-align: middle;
-  text-align: center;
-  background-color: #FFFFFF;
+  margin: 0 auto;
+  background-color: #EEEEEE;
 }
-.border h3
+.container .col-sm-3
 {
-  text-align: center;
-  vertical-align: bottm;
+  display: table-cell;
+  vertical-align: middle;
+}
+p{
+  font-weight: bolder;
 }

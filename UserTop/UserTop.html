@@ -7,46 +7,42 @@
   <link rel="stylesheet" href="./jquery-week-calender-master/jquery.weekcalendar.css">
 </head>
 <body>
-  
-  <div class="panel">
 
-    <div class="container">
-      <div clss="row">
-        <div class="col-sm-4">
-          <h4>今日の歩数</h4>
-          <h1>2456歩</h1>
-          <h4>今日の消費カロリー</h4>
-          <h1>180cal</h1>
-          <h4>身長</h4>
-          <h1>170cm</h1>
-          <h4>体重</h4>
-          <h1>100kg</h1>
-          <h4>BMI</h4>
-          <h1>34.6</h1>
-        </div>
+  <div class="container">
+    <div clss="row">
+      <div class="col-sm-3">
+        <div class="panel" draggable="true">
+        <h4>今日の歩数</h4>
+        <h1>2456歩</h1>
+        <h4>今日の消費カロリー</h4>
+        <h1>180cal</h1>
+        <h4>身長</h4>
+        <h1>170cm</h1>
+        <h4>体重</h4>
+        <h1>100kg</h1>
+        <h4>BMI</h4>
+        <h1>34.6</h1>
       </div>
-    </div>
-
-    <div class="container">
-      <div clss="row">
-        <div class="col-sm-4">
-          <canvas id="weight" width="300px" height="300px"></canvas>
-          <p>体重の変化グラフ(kg)</p>
-          <canvas id="calorie" width="300px" height="300px"></canvas>
-          <p>消費カロリーの変化グラフ（cal）</p>
-        </div>
       </div>
-    </div>
 
-    <div class="container">
-      <div clss="row">
-        <div class="col-sm-4">
-          <p>ここにスケジューラー（1日分）</p>
-        </div>
+      <div class="col-sm-3 col-md-offset-1">
+        <div class="panel"  draggable="true">
+        <canvas id="weight" width="250px" height="250px"></canvas>
+        <p>体重の変化グラフ(kg)</p>
+        <canvas id="calorie" width="250px" height="250px"></canvas>
+        <p>消費カロリーの変化グラフ（cal）</p>
       </div>
-    </div>
+      </div>
 
+      <div class="col-sm-3 col-md-offset-1">
+        <div class="panel"  draggable="true">
+        <p>ここにスケジューラー（1日分）</p>
+      </div>
+      </div>
+
+    </div>
   </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
@@ -91,6 +87,9 @@ window.onload = function(){
   var ctx2 = document.getElementById("weight").getContext("2d");
   window.myLine = new Chart(ctx2).Line(lineChartData);
 }
+
+//D&D可能
+
 </script>
 
 </body>
