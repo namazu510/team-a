@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
+  constraints -> request { request.session[:user_id].present? } do
+    root to: 'home#index'
+  end
   root to: 'root#index'
   get 'root/index'
   get 'signup', to: 'users#new'
+  get 'sessions/new'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'login', to: 'sessions#destroy'
