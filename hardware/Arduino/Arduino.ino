@@ -21,7 +21,7 @@
 #define LED_PIN 2
 
 //各種閾値
-#define THRESHOLD_SENSING 730 //足を動かしたという判定用
+#define THRESHOLD_SENSING 670 //足を動かしたという判定用
 #define THRESHOLD_WALK_TIME 15//運動開始を判定する時間
 #define THRESHOLD_WALK_COUNT 4//運動開始を判定する歩数
 
@@ -98,16 +98,14 @@ void setup() {
   Serial.begin(9600);   //シリアル通信を9600bpsで始める
 }
 
-//ループ
-void loop() {
+void addBuffer(String buf){
+  buffer+=buf;//バッファにデータを追加する
+}
+void addBeforeBuffer(String buf){
+  before_buffer+=buf;//バッファにデータを追加する
+}
 
-  //センサー値を更新
-  old_x = now_x; old_y = now_y; old_z = now_z;
-  readSensor();
-
-  //足を動かしたかの判定
-  if (abs(now_y - old_y) > THRESHOLD_SENSING) {
-
+void walk(){
     //センサー値は1歩で上下で2回反応するのでその判定。
     if (isUp) {
 
@@ -120,12 +118,12 @@ void loop() {
       if (time - before_time > THRESHOLD_WALK_TIME * 10) { //閾値分時間がたっていたら
         before_time = -1; //運動していないという判定に
         isWalk = false; //運動終了
-        digitalWrite(LED_PIN,LOW);
+        addBuffer(String("|"));//運動の区切りをバッファに追加
       }
       //歩数カウント
       before_stepcnt++;
       //バッファに歩行記録を追加
-      before_buffer += String(String(time / 10) + "," + String(before_stepcnt) + ";");
+      addBeforeBuffer(String(time / 10) + "," + String(before_stepcnt) + ";");
 
       //一定時間内に一定歩数歩いた場合(運動開始)
       if (before_stepcnt >= THRESHOLD_WALK_COUNT) {
@@ -137,7 +135,7 @@ void loop() {
           buffer += before_buffer;
         }
 
-        //運動判定用のタイマをリセット
+        //運動判定用のタイマをリセッ
         before_time = -1;
         //運動している状態へ
         isWalk = true;
@@ -148,25 +146,42 @@ void loop() {
       //運動している判定なら
       if (isWalk) {
         stepcnt++;
-        buffer += String(String(time / 10) + "," + String(stepcnt) + ";");
+        addBuffer(String(time / 10) + "," + String(stepcnt) + ";");
 
       }
     }
     isUp = !isUp; //足の上げ下げを判定
+}
+
+//ループ
+void loop() {
+
+  //センサー値を更新
+  old_x = now_x; old_y = now_y; old_z = now_z;
+  readSensor();
+
+  //足を動かしたかの判定
+  if (abs(now_y - old_y) > THRESHOLD_SENSING) {
+    walk();//歩いた際の処理
   }
 
   //転送処理
   if (digitalRead(SEND_PIN) == LOW && Serial) {
-    Serial.println(buffer);//バッファのデータを転送
-
-    //初期化処理を送信
-    buffer = String();
-    stepcnt = 0;
-    time = 0;
-    before_time = -1;
-    before_stepcnt = 0;
+    if(buffer.length()>0){
+      Serial.println(String(time/10)+"*"+buffer);//バッファのデータを転送
+  
+      //初期化処理を送信
+      buffer = String();
+      stepcnt = 0;
+      time = 0;
+      before_time = -1;
+      before_stepcnt = 0;
+    }
   }
   delay(100);//100ms
   time++;//100msに1カウント(誤差あり)
+  if (time - before_time > THRESHOLD_WALK_TIME * 10) {
+    digitalWrite(LED_PIN,LOW);
+  }
 }
 

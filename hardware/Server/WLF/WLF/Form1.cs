@@ -35,34 +35,44 @@ namespace WLF
                 serial.DtrEnable = true;
                 serial.Open();
                 Console.WriteLine("COM2と接続しました。");
-                DateTime date = DateTime.Now;
                 while (true)
                 {
                     try
                     {
                         String rcv = serial.ReadLine();
+                        Console.WriteLine(rcv);
                         if (rcv.Length > 0)
                         {
-                            string[] data = rcv.Split(';');
-                            if (data.Length > 1)
+                            string[] buf;
+                            uint time;
+                            buf = rcv.Split('*');
+                            time = uint.Parse(buf[0]);
+                            buf = buf[1].Split('|');
+                            if (buf.Length > 0)
                             {
-                                WLFModule mod = new WLFModule();
+                                for (int i=0;i<buf.Length;i++) {
+                                    String[] data = buf[i].Split(';');
+                                    if (data.Length > 1)
+                                    {
+                                        WLFModule mod = new WLFModule();
 
-                                mod.start = date.AddSeconds(uint.Parse(data[0].Split(',')[0]));
-                                mod.end = date.AddSeconds(uint.Parse(data[data.Length - 2].Split(',')[0]));
-                                mod.step = uint.Parse(data[data.Length - 2].Split(',')[1]);
+                                        DateTime date = DateTime.Now;
+                                        mod.start = date.AddSeconds(long.Parse(data[0].Split(',')[0]) - time);
+                                        mod.end = date.AddSeconds(long.Parse(data[data.Length - 2].Split(',')[0]) - time);
+                                        mod.step = uint.Parse(data[data.Length - 2].Split(',')[1]);
 
 
-                                Console.WriteLine(mod.start.ToString() + "～" + mod.end.ToString() + " 歩数:" + mod.step.ToString());
+                                        Console.WriteLine(mod.start.ToString() + "～" + mod.end.ToString() + " 歩数:" + mod.step.ToString());
 
-                                date = DateTime.Now;
-                                mod.execute();
+                                        mod.execute();
+                                    }
+                                }
                             }
                         }
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.StackTrace);
+                        //Console.WriteLine(e.StackTrace);
                         break;
                     }
                 }
@@ -70,7 +80,7 @@ namespace WLF
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
+                //Console.WriteLine(e.StackTrace);
                 return;
             }
         }
