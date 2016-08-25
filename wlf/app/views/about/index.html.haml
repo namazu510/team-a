@@ -1,0 +1,85 @@
+= stylesheet_link_tag "root", :media => "all"
+= stylesheet_link_tag "about", :media => "all"
+= javascript_include_tag "about"
+= javascript_include_tag "root"
+%body
+  %nav.navbar.navbar-default{role: "navigation"}
+    .container-fluid
+      .navbar-header
+        %a.navbar-brand{href: "/"}
+          = image_tag "logo.png", :size => "50x32"
+      .collapse.navbar-collapse{id: "nav_targets"}
+        %ul.nav.navbar-nav
+          %li
+            %a
+              Work
+          %li
+            %a{href: "/about"}
+              About
+          %li
+            %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+
+              Contact
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: "/login"}
+              Sign in
+
+  .container.main-text
+    .about-wall
+      %h1.text-center.page-title
+        Weight Less Fat!
+      %h2.text-center.subject-title
+        WLFで今までにないダイエット体験を
+      %p
+        Weight Less Fatでは専用機器を用いてあなたの運動を記録します
+      %p
+        毎日機器を身に着けて歩くだけでも、それは立派な運動です
+      %p
+        得られたデータを毎日確認し、自分の努力をしっかりとした数値として把握しましょう
+      %p
+        あなたも今日からWLFで今までになかったダイエット体験を始めませんか？
+  #content
+    .rect{id: "rect"}
+      =image_tag "run.png", height: "150", alt: "人が走っています"
+
+  .footer{id: "footer"}
+    .footer-contents
+      %ul.navbar-nav.list-inline
+        %li.first
+          %a{href: "/about"}
+            About
+        %li
+          %a{href: "/login"}
+            Sign in
+        %li
+          %a{href: "/signup"}
+            Sign up
+        %li
+          %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+            Contact
+        %li
+          %a{href: "#"}
+            Help
+    .clearfix
+    %ul.sns-icon.list-inline
+      %li
+        %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+          %i.fa.fa-github.fa-2x
+    .copy
+      %span
+        Copyright &#169; 2016.
+
+:javascript
+  $(function() {
+    setTimeout('rect()');
+  });
+
+  rect = function() {
+    $("#rect").animate({
+      left: "1920px"
+    }, 8000).animate({
+      left: "-100px"
+    }, 0);
+    setTimeout("rect()", 3000);
+  }

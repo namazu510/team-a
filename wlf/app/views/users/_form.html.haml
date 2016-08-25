@@ -1,31 +1,68 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+    
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :admin
-    = f.check_box :admin
-  .field
-    = f.label :password
-    = f.text_field :password
-  .field
-    = f.label :gender
-    = f.number_field :gender
-  .field
-    = f.label :height
-    = f.text_field :height
-  .field
-    = f.label :age
-    = f.number_field :age
-  .actions
-    = f.submit 'Save'
+.form-horizontal{role: "form"}
+  = form_for @user do |f|
+    - if @user.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-group
+      .field
+        = f.label :name, :class => "col-sm-3 control-label"
+        .col-sm-7
+          = f.text_field :name, :class => "form-control", :required => true, :placeholder => "山田太郎"
+          .required-label
+            必須
+    .form-group
+      .field
+        = f.label :email, :class => "col-sm-3 control-label"
+        .col-sm-7
+          = f.text_field :email, :class => "form-control", :type => "email", :required => true, :placeholder => "test@example.com"
+          .required-label
+            必須
+    .form-group
+      .field
+        = f.label :password, :class => "col-sm-3 control-label"
+        .col-sm-7
+          = f.text_field :password, :class => "form-control", :id => "password", :type => "password", :required => true
+          .required-label
+            必須
+    .form-group
+      .field
+        %label.col-sm-3.control-label
+          confirm
+        .col-sm-7
+          %input.form-control{type: "password", id: "confirm", equired: true}
+          .required-label
+            必須
+
+    .form-group
+      .field
+        = f.label :height, :class => "col-sm-3 control-label"
+        .col-sm-7
+          = f.text_field :height, :class => "form-control"
+    .form-group
+      .field
+        = f.label :age, :class => "col-sm-3 control-label"
+        .col-sm-3
+          = f.number_field :age, :class => "form-control age-form", :type => "number", :min => "0"
+    .form-group
+      .col-sm-offset-3.col-sm-3
+        = f.submit '登録', :class => "form-control btn btn-primary"
+
+:javascript
+  $('#new_user').submit(function(){
+    var pass = $(':password[id="password"]').val();
+    var conf = $(':password[id="confirm"]').val();
+
+    if(pass == conf){
+      return true;
+    }
+    else {
+      alert("入力されたパスワードが一致しません.");
+      return false;
+    }
+  });

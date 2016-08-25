@@ -1,3 +1,23 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.signup-form {
+  background-color: #FFFFFF;
+  color: #888888;
+  height: 600px;
+  margin-bottom: 50px;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  .signup-header {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    color: #888888;
+  }
+}
+
+.link-already-account {
+  margin-left: 50px;
+}
+
+.required-label {
+  color: #FF3300;
+}

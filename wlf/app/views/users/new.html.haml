@@ -1,5 +1,59 @@
-%h1 New user
-
-= render 'form'
-
-= link_to 'Back', users_path
+= stylesheet_link_tag "root", :media => "all"
+= stylesheet_link_tag "users", :media => "all"
+%body
+  %nav.navbar.navbar-default{role: "navigation"}
+    .container-fluid
+      .navbar-header
+        %a.navbar-brand{href: "/"}
+          = image_tag "logo.png", :size => "50x32"
+      .collapse.navbar-collapse{id: "nav_targets"}
+        %ul.nav.navbar-nav
+          %li
+            %a{href: "#"}
+              Work
+          %li
+            %a{href: "/about"}
+              About
+          %li
+            %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+              Contact
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: "login"}
+              Sign in
+  .container
+    .signup-form
+      .signup-header
+        = image_tag "logo.png", :size => "75x48"
+        %h2
+          新規アカウント登録
+      = render 'form'
+      %a.link-already-account{href: "/login"}
+        すでにアカウントを持っている
+        
+  .footer{id: "footer"}
+    .footer-contents
+      %ul.navbar-nav.list-inline
+        %li.first
+          %a{href: "/about"}
+            About
+        %li
+          %a{href: "/login"}
+            Sign in
+        %li
+          %a{href: "/signup"}
+            Sign up
+        %li
+          %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+            Contact
+        %li
+          %a{href: "/help"}
+            Help
+    .clearfix
+    %ul.sns-icon.list-inline
+      %li
+        %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+          %i.fa.fa-github.fa-2x
+    .copy
+      %span
+        Copyright &#169; 2016.
