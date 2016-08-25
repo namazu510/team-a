@@ -9,6 +9,9 @@ body
   max-width: 1350px;
   height: 220px;
   background-color: #FFFFFF;
+  -webkit-box-shadow: 1px 1px 3px #808080;
+  box-shadow: 1px 1px 3px #808080;
+  border-radius: 20px;
 }
 .container article img{
   float: left;
