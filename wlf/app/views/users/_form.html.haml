@@ -1,5 +1,3 @@
-    
-
 .form-horizontal{role: "form"}
   = form_for @user do |f|
     - if @user.errors.any?
@@ -43,12 +41,12 @@
       .field
         = f.label :height, :class => "col-sm-3 control-label"
         .col-sm-7
-          = f.text_field :height, :class => "form-control"
+          = f.number_field :height, :class => "form-control", :min => "0", :value => 0
     .form-group
       .field
         = f.label :age, :class => "col-sm-3 control-label"
         .col-sm-3
-          = f.number_field :age, :class => "form-control age-form", :type => "number", :min => "0"
+          = f.number_field :age, :class => "form-control age-form", :type => "number", :min => "0", :value => 0
     .form-group
       .col-sm-offset-3.col-sm-3
         = f.submit '登録', :class => "form-control btn btn-primary"

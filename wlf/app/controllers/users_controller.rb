@@ -29,6 +29,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     @user.admin = false
+    @user.gender = 0
+
+    if @user.height == ""
+      @user.height = 0
+    end
+    if @user.age == ""
+      @user.age = 0
+    end
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
