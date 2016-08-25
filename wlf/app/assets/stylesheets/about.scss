@@ -1,0 +1,46 @@
+.account-wall {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  background-color: #FFFFFF;
+}
+.main-text {
+  margin-bottom: 170px;
+}
+.page-title {
+  text-align: center;
+  color: #000;
+  font-size: 60px;
+  font-weight: 600;
+  display: block;
+}
+.subject-title {
+  text-align: center;
+  color: #000;
+  font-size: 22px;
+  font-weight: 600;
+  display: block;
+}
+p {
+  text-align: center;
+  font-weight: bold;;
+}
+
+#content {
+  position: relative;
+  margin-top: 30px;
+  width:2000px;
+  height:250px;
+  overflow:hidden;
+}
+#rect {
+  position: absolute;
+  width:auto;
+  padding:10px 0px;
+  text-align:center;
+  color:#ffffff;
+}

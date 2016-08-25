@@ -1,0 +1,16 @@
+.form-horizontal{role: "form"}
+  = form_for(:session, url: login_path) do |f|
+
+    .form-group
+      .field
+        = f.label :email, :class => "col-sm-3 control-label"
+        .col-sm-7
+          = f.email_field :email, :class => "form-control", :type => "email", :required => true
+    .form-group
+      .field
+        = f.label :password, :class => "col-sm-3 control-label"
+        .col-sm-7
+          = f.password_field :password, :class => "form-control", :id => "password", :type => "password", :required => true
+    .form-group
+      .col-sm-offset-3.col-sm-3
+        = f.submit 'ログイン', :class => "form-control btn btn-primary"

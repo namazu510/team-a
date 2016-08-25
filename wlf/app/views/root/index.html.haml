@@ -13,22 +13,23 @@
   %nav.navbar.navbar-default{role: "navigation"}
     .container-fluid
       .navbar-header
-        %a.navbar-brand{href: "#"}
-          WLF
+        %a.navbar-brand{href: "/"}
+          = image_tag "logo.png", :size => "50x32"
       .collapse.navbar-collapse{id: "nav_targets"}
         %ul.nav.navbar-nav
           %li
-            %a
+            %a{href: "#"}
               Work
           %li
-            %a
+            %a{href: "/about"}
               About
           %li
-            %a
+            %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
               Contact
         %ul.nav.navbar-nav.navbar-right
           %li
-            %a Sign in
+            %a{href: "/login"}
+              Sign in
   .slide{id: "main_slide"}
     %ul
       %li
@@ -69,31 +70,36 @@
 
   .signup-contents
     .container
-      %p
-        test
+      %h2
+        今すぐWLFを利用する
+      %h3
+        Weight less fat!
+      %button.btn.btn-primary.btn-lg{type: "button", onclick: "location.href='/signup'"}
+        Sign up Now
 
   .footer{id: "footer"}
     .footer-contents
       %ul.navbar-nav.list-inline
         %li.first
-          %a{href: "#"}
+          %a{href: "/about"}
             About
         %li
-          %a{href: "#"}
+          %a{href: "/login"}
             Sign in
         %li
-          %a{href: "#"}
+          %a{href: "/signup"}
             Sign up
         %li
-          %a{href: "#"}
+          %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
             Contact
         %li
-          %a{href: "#"}
+          %a{href: "/help"}
             Help
     .clearfix
     %ul.sns-icon.list-inline
       %li
-        %i.fa.fa-github.fa-2x
+        %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+          %i.fa.fa-github.fa-2x
     .copy
       %span
         Copyright &#169; 2016.
