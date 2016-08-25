@@ -11,9 +11,11 @@
         %ul.nav.navbar-nav.navbar-right
           %li
             %a{href: "/users/#{current_user.id}"}
+              %i.fa.fa-user
               Profile
           %li
             %a{href: "#{logout_path}"}
+              %i.fa.fa-sign-out
               Log out
   .container
     .profile-contents-box

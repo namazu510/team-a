@@ -1,0 +1,115 @@
+= stylesheet_link_tag "root", :media => "all"
+= stylesheet_link_tag "help", :media => "all"
+= javascript_include_tag "root"
+%body
+  %nav.navbar.navbar-default{role: "navigation"}
+    .container-fluid
+      .navbar-header
+        %a.navbar-brand{href: "/"}
+          = image_tag "logo.png", :size => "50x32"
+      .collapse.navbar-collapse{id: "nav_targets"}
+        %ul.nav.navbar-nav
+          %li
+            %a{href: "#"}
+              Work
+          %li
+            %a{href: "/about"}
+              About
+          %li
+            %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+              Contact
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: "/login"}
+              Sign in
+
+  .container
+    %article
+      = image_tag "running_man.jpg"
+      %h3
+        WLFでできること
+      %p
+        Weight Less Fatでは、専用の運動探知機器を用いたダイエット支援サービスです.
+      %p
+        本サービスでは、歩数、身長データ、体重データから消費カロリーを計算し、それらを視覚的に確認することができます.
+      %p
+        毎日記録をとることで、体重の変化をグラフで表し、視覚的に確認することでモチベーション維持を図っています.
+  .container
+    %article
+      = image_tag "graph.jpg"
+      %h3
+        体重増減グラフ
+      %p
+        体重増減グラフでは、あなたが本webサービスを開始した時点からの体重の増減を視覚的に確認できます.
+      %p
+        このグラフはあなたの努力をわかりやすく表示したものです.
+      %p
+        この体重グラフが右肩下がりになるように頑張りましょう.
+  .container
+    %article
+      = image_tag "running_man2.jpg"
+      %h3
+        BMIとは
+      %p
+        BMI,ボディマス指数とは、肥満度を表す体格指数のことです.
+      %p
+        体重(kg)÷身長(m)x身長(m)で計算されます.
+      %p
+        この数値が25以上になってしまうと肥満と判断されてしまいます.
+  .container
+    %article
+      = image_tag "graph.jpg"
+      %h3
+        消費カロリーグラフ
+      %p
+        一日の歩数、身長データ、体重データから、今日一日でどれだけのカロリーが消費されたかをグラフで表しています.
+      %p
+        一万歩歩くと、およそ300キロカロリーが消費されます.
+  .container
+    %article
+      = image_tag "park.jpg"
+      %h3
+        歩数確認
+      %p
+        専用の運動探知機からえらっれた歩数のデータを表示しています.
+      %p
+        「健康日本21」によると、1日の理想的な歩数は一万歩とされています.
+      %p
+        せひ一万歩を目指して頑張ってください.
+  .container
+    %article
+      = image_tag  "calender.jpg"
+      %h3
+        スケジューラ
+      %p
+        スケジューラでは予定の編集と確認が行えます.
+      %p
+        スケジューラを用いて無理のない運動の予定を立てましょう.
+
+  .footer{id: "footer"}
+    .footer-contents
+      %ul.navbar-nav.list-inline
+        %li.first
+          %a{href: "/about"}
+            About
+        %li
+          %a{href: "/login"}
+            Sign in
+        %li
+          %a{href: "/signup"}
+            Sign up
+        %li
+          %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+            Contact
+        %li
+          %a{href: "/help"}
+            Help
+    .clearfix
+    %ul.sns-icon.list-inline
+      %li
+        %a{href: "https://github.com/nalgo-intern-2016/team-a/tree/master/wlf"}
+          %i.fa.fa-github.fa-2x
+    .copy
+      %span
+        Copyright &#169; 2016.
+

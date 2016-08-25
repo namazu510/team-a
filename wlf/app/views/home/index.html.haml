@@ -14,9 +14,11 @@
         %ul.nav.navbar-nav.navbar-right
           %li
             %a{href: "/users/#{current_user.id}"}
+              %i.fa.fa-user
               Profile
           %li
             %a{href: "#{logout_path}"}
+              %i.fa.fa-sign-out
               Log out
   .container
 
@@ -27,28 +29,28 @@
       type: 'row',
       content: [{
         type: 'component',
-        componentName: 'testComponent',
-        componentState: { label: 'スケジュール' }
+        componentName: 'Panel',
+        componentState: { label: '<i class="fa fa-calendar-check-o"></i>スケジュール' }
       },
       {
         type: 'column',
         content: [{
           type: 'component',
-          componentName: 'testComponent',
-          componentState: { label: '運動記録' }
+          componentName: 'Panel',
+          componentState: { label: '<i class="fa fa-pencil-square-o"></i>運動記録' }
         },
         {
           type: 'component',
-          componentName: 'testComponent',
-          componentState: { label: '運動データ'}
+          componentName: 'Panel',
+          componentState: { label: '<i class="fa fa-line-chart"></i>運動データ'}
         }]
       }]
     }]
   };
 
   var myLayout = new GoldenLayout(config);
-  myLayout.registerComponent('testComponent', function( container, componentState) {
-    container.getElement().html('<h2>' + componentState.label + '</h2>' );
+  myLayout.registerComponent('Panel', function( container, componentState) {
+    container.getElement().html('<h3>' + componentState.label + '</h3>' );
   });
 
   myLayout.init();
