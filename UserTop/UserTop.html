@@ -1,0 +1,90 @@
+<html>
+<head>
+  <meta charest="UTF-8">
+  <link rel="stylesheet"
+  href="./UserTop.css">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./jquery-week-calender-master/jquery.weekcalendar.css">
+</head>
+<body>
+  <div class="container">
+    <div clss="row">
+
+      <div class="col-sm-4">
+        <h4>今日の歩数は</h4>
+        <h1>2456歩（仮）</h1>
+        <h4>今日の消費カロリーは</h4>
+        <h1>180キロカロリー（仮）</h1>
+        <h4>身長</h4>
+        <h1>170cm（仮）</h1>
+        <h4>体重</h4>
+        <h1>100kg（仮）</h1>
+        <h4>BMI</h4>
+        <h1>34.6（仮）</h1>
+        <h4>結果あなたは○○です</h4>
+      </div>
+
+      <div class="col-sm-4">
+        <canvas id="weight" width="300px" height="300px"></canvas>
+        <p>体重の変化グラフ(kg)</p>
+        <canvas id="calorie" width="300px" height="300px"></canvas>
+        <p>消費カロリーの変化グラフ（cal）</p>
+      </div>
+
+      <div class="container">
+        <div clss="row">
+          <div class="col-sm-4">
+            <p>ここにスケジューラー（1日分）</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+    <script src='./libs/jquery-week-calender-master/jquery-ui-1.8rc3.custom.min.js'></script>
+    <script src="./jquery-week-calender-master/jquery.weekcalendar.js"></script>
+
+    <script type="text/javascript">
+    // ▼グラフの中身(体重)
+    var lineChartData = {
+      labels : ["8月1日","8月2日","8月3日","8月4日","8月5日","8月6日","8月7日"],
+      datasets : [
+        {
+          label: "青データ",
+          fillColor : "rgba(151,187,205,0.2)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "white",
+          pointHighlightFill : "yellow",
+          pointHighlightStroke : "blue",
+          data : [ 90.5, 91.7, 90.2, 88.3, 89.2, 87.5, 90.2 ]
+        }
+      ]
+    }
+    // ▼グラフの中身（カロリー）
+    var barChartData = {
+      labels : ["8月1日","8月2日","8月3日","8月4日","8月5日","8月6日","8月7日"],
+      datasets : [
+        {
+          fillColor : "rgba(151,187,205,0.6)",
+          strokeColor : "rgba(151,187,205,0.9)",
+          highlightFill : "rgba(64,96,255,0.75)",
+          highlightStroke : "rgba(64,96,255,1)",
+          data : [ 170, 190, 350, 100, 290, 260, 280 ]
+        }
+      ]
+    }
+    // ▼上記のグラフを描画するための記述
+    window.onload = function(){
+      var ctx = document.getElementById("calorie").getContext("2d");
+      window.myBar = new Chart(ctx).Bar(barChartData);
+
+      var ctx2 = document.getElementById("weight").getContext("2d");
+      window.myLine = new Chart(ctx2).Line(lineChartData);
+    }
+    </script>
+
+  </body>
+  </html>
