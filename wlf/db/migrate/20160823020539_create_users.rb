@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.string :name , :null=>false
       t.string :email
-      t.boolean :admin , :null=>false, :default false
+      t.boolean :admin , :null=>false, :default => false
       t.string :password
       t.integer :gender
       t.float :height

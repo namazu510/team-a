@@ -13,6 +13,18 @@
             %a{href: "#{logout_path}"}
               Log out
   .container
+    .profile-contents-box
+      .panel.panel-default
+        .panel-heading
+        %ul.list-group
+          %li.list-group-item
+            .info-item
+              %a{href: "/users/#{@user.id}"}
+                ユーザ登録情報
+          %li.list-group-item
+            .edit-item
+              %a{href: "/users/#{@user.id}/edit"}
+                登録情報の編集
     .profile-edit-box
       %h2.profile-edit-header
         プロフィール情報変更
