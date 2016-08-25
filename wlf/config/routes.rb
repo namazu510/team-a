@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   constraints -> request { request.session[:user_id].present? } do
     root to: 'home#index'
   end
+  get 'root/index'
   root to: 'root#index'
   get 'root/index'
   get 'signup', to: 'users#new'
