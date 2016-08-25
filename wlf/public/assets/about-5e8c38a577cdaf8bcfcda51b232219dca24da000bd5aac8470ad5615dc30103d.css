@@ -1,0 +1,58 @@
+/* line 1, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/about.scss */
+.account-wall {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+}
+
+/* line 11, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/about.scss */
+.main-text {
+  margin-bottom: 170px;
+}
+
+/* line 14, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/about.scss */
+.page-title {
+  text-align: center;
+  color: #000;
+  font-size: 60px;
+  font-weight: 600;
+  display: block;
+}
+
+/* line 21, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/about.scss */
+.subject-title {
+  text-align: center;
+  color: #000;
+  font-size: 22px;
+  font-weight: 600;
+  display: block;
+}
+
+/* line 28, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/about.scss */
+p {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* line 33, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/about.scss */
+#content {
+  position: relative;
+  margin-top: 30px;
+  width: 2000px;
+  height: 250px;
+  overflow: hidden;
+}
+
+/* line 40, C:/Users/internship/workspace-dev/team-a/wlf/app/assets/stylesheets/about.scss */
+#rect {
+  position: absolute;
+  width: auto;
+  padding: 10px 0px;
+  text-align: center;
+  color: #ffffff;
+}

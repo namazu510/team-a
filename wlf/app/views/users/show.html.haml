@@ -9,6 +9,9 @@
       .collapse.navbar-collapse{id: "nav_targets"}
         %ul.nav.navbar-nav.navbar-right
           %li
+            %a{href: "/users/#{current_user.id}"}
+              Profile
+          %li
             %a{href: "#{logout_path}"}
               Log out
   .container
