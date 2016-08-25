@@ -8,13 +8,13 @@ class User < ApplicationRecord
   }
 
   validates :height,  :numericality => {
-    :greater_than_or_equal_to => 0
+    :greater_than_or_equal_to => 0 ,
     :less_than => 300
   }
 
   validates :age,  :numericality => {
-    :only_integer => true,
-    :greater_than_or_equal_to => 0
+    :only_integer => true ,
+    :greater_than_or_equal_to => 0 ,
     :less_than => 200
   }
 end
