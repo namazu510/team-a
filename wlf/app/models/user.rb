@@ -1,4 +1,10 @@
-class User < ApplicationRecord
+class User < ActiveRecord::Base
+  before_save { self.email = email.downcase }
+  has_secure_password
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_const ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
@@ -17,4 +23,5 @@ class User < ApplicationRecord
     :greater_than_or_equal_to => 0 ,
     :less_than => 200
   }
+
 end

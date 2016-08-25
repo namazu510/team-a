@@ -1,0 +1,9 @@
+%p
+  %font{colr: red}
+    = flash[:alert]
+= form_tag login_path do
+  = label_tag :email, 'メールアドレス'
+  = text_field_tag :email, params[:email]
+  = label_tag :password, 'パスワード'
+  = password_field_tag :password, params[:password]
+  = submit_tag "ログイン"
