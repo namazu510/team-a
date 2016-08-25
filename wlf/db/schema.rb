@@ -14,14 +14,12 @@ ActiveRecord::Schema.define(version: 20160824062153) do
 
   create_table "exercise_logs", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "start_time",  null: false
-    t.datetime "end_time",    null: false
-    t.integer  "step_cnt",    null: false
-    t.float    "calorie",     null: false
-    t.integer  "schedule_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["schedule_id"], name: "index_exercise_logs_on_schedule_id"
+    t.datetime "start_time", null: false
+    t.datetime "end_time",   null: false
+    t.integer  "step_cnt",   null: false
+    t.float    "calorie",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_exercise_logs_on_user_id"
   end
 
@@ -36,15 +34,15 @@ ActiveRecord::Schema.define(version: 20160824062153) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",            null: false
+    t.string   "name",                            null: false
     t.string   "email"
-    t.boolean  "admin",           null: false
+    t.boolean  "admin",           default: false, null: false
     t.string   "password"
-    t.integer  "gender"
+    t.integer  "gender",          default: 0
     t.float    "height"
     t.integer  "age"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
   end
 

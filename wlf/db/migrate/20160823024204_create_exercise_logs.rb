@@ -6,7 +6,6 @@ class CreateExerciseLogs < ActiveRecord::Migration[5.0]
       t.datetime :end_time,:null=>false
       t.integer :step_cnt,:null=>false
       t.float :calorie,:null=>false
-      t.references :schedule, foreign_key: true
 
       t.timestamps
     end

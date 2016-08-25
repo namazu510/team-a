@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :email
       t.boolean :admin , :null=>false, :default=> false
       t.string :password
-      t.integer :gender
+      t.integer :gender , :default => false
       t.float :height
       t.integer :age
 

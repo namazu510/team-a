@@ -8,7 +8,6 @@
       %th End time
       %th Step cnt
       %th Calorie
-      %th Schedule
       %th
       %th
       %th
@@ -21,7 +20,6 @@
         %td= exercise_log.end_time
         %td= exercise_log.step_cnt
         %td= exercise_log.calorie
-        %td= exercise_log.schedule
         %td= link_to 'Show', exercise_log
         %td= link_to 'Edit', edit_exercise_log_path(exercise_log)
         %td= link_to 'Destroy', exercise_log, :method => :delete, :data => { :confirm => 'Are you sure?' }

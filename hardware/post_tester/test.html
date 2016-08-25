@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <!--ただポストをテストするだけなんだよ　くそみたいなHTMLを書くんだよ
+  　へっだ？　ぼでぃ？　しらないこですね　-->
+  <p> to http://localhost:3000/exercise_logs post sender </p>
+
+  <form action="http://localhost:3000/exercise_logs" method="post">
+    <label>id</label><input type="text" name="id" /> <br />
+    <label>email</label><input type="text" name="email" /> <br />
+    <label>pass</label><input type="text" name="password" /> <br />
+    <label>start_time</label><input type="text" name="start_time" value="2016-08-25 19:00:00" /> <br />
+    <label>end_time</label><input type="text" name="end_time"  value="2016-08-25 20:00:00"/> <br />
+    <label>stap_cnt</label><input type="text" name="step_cnt"  value="65536"/> <br />
+    <label>calorie</label><input type="text" name="calorie"  value="4423"/> <br />
+    <button type="submit">submit</button>
+  </form>
+</html>

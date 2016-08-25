@@ -24,7 +24,19 @@ class ExerciseLogsController < ApplicationController
   # POST /exercise_logs
   # POST /exercise_logs.json
   def create
-    @exercise_log = ExerciseLog.new(exercise_log_params)
+
+    # ユーザー探し出す.
+    user = User.find_by_id(params[:id])
+
+    # 一つ毎代入してやっていく方法くらえぃ>_<
+    @exercise_log = user.exercise_logs.build()
+    @exercise_log.start_time = params[:start_time].to_datetime
+    @exercise_log.end_time = params[:end_time].to_datetime
+    @exercise_log.step_cnt = params[:step_cnt]
+    @exercise_log.calorie = params[:calorie]
+
+
+    #@exercise_log = ExerciseLog.new(exercise_log_params)
 
     respond_to do |format|
       if @exercise_log.save

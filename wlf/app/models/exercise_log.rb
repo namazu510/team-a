@@ -1,7 +1,6 @@
 class ExerciseLog < ApplicationRecord
   belongs_to :user
-  belongs_to :schedule
-
+  
   validates :step_cnt ,:numericality =>{
     :only_integer => true ,
     :greater_than => 0 ,

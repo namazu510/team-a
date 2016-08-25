@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  #CSRF対策無効化　:exception -> :null_sessionへ　naoki
+  #TODO: 無効にするcontrollerを絞ったりできるみたいですよ　そうしましょう.
+  protect_from_forgery with: :null_session
   include SessionsHelper
 end

@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  has_many :weights
+  has_many :exercise_logs
+
   before_save { self.email = email.downcase }
   has_secure_password
   def User.digest(string)
@@ -24,5 +28,5 @@ class User < ActiveRecord::Base
     :greater_than_or_equal_to => 0 ,
     :less_than => 200
   }
-  
+
 end
