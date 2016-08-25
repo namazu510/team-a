@@ -168,7 +168,7 @@ void loop() {
   //転送処理
   if (digitalRead(SEND_PIN) == LOW && Serial) {
     if(buffer.length()>0){
-      Serial.println(String(time/10)+"*"+buffer);//バッファのデータを転送
+      Serial.println(String(time/10)+"="+buffer);//バッファのデータを転送
   
       //初期化処理を送信
       buffer = String();
