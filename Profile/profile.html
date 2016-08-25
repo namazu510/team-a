@@ -16,7 +16,6 @@
           <h1 class="text-center page-title">Profile</h1>
           <h4 class="text-center page-subject">ここではプロフィールの確認・変更が行えます</h4>
         </div>
-
         <form class="form-signin">
           <p>登録名
             <input type="text" class="form-control" placeholder="Username"></p>
@@ -24,16 +23,20 @@
             <input type="text" class="form-control" placeholder="Address"></p>
           <p>登録パスワード
             <input type="password" class="form-control" placeholder="password"></p>
-          <p>性別
-            <input type="text" class="form-control" placeholder="gender"></p>
           <p>身長
             <input type="text" class="form-control" placeholder="height"></p>
           <p>体重
             <input type="text" class="form-control" placeholder="weight"></p>
-          <p>BMI
-            <input type="text" class="form-control" placeholder="BMI"></p>
           <p>年齢
             <input type="text" class="form-control" placeholder="age"></p>
+          <p>性別
+            <form>
+              <select name="Gender">
+                <option value="man">男性</option>
+                <option value="woman">女性</option>
+              </select>
+            </form>
+          </p>
         </form>
 
         <button class="btn btn-lg btn-primary btn-block" type="button" onclick="">変更を保存する</button>

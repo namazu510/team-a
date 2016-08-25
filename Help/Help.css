@@ -3,7 +3,8 @@ body
   padding-top: 70px;
   background-color: #EEEEEE;
 }
-.container {
+.container
+{
   margin: 0 auto;
   max-width: 1350px;
   height: 220px;

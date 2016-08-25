@@ -1,13 +1,21 @@
 body
 {
   padding-top: 70px;
-  background-color: #000000;
+}
+.panel
+{
+    display: table-cell;
+  	vertical-align: middle;
+    text-align: center;
+    background-color: #000;
 }
 .container
 {
-  margin: 0 auto;
-  max-width: 1350px;
-  height: 220px;
+  max-width: 1000px;
+  height: 200px;
+  display: table-cell;
+	vertical-align: middle;
+  text-align: center;
   background-color: #FFFFFF;
 }
 .border h3
