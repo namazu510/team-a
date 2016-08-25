@@ -4,7 +4,7 @@
   <link rel="stylesheet"
   href="./UserTop.css">
   <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./jquery-week-calender-master/jquery.weekcalendar.css">
+  <link rel="stylesheet" href="./jquery.weekcalendar.css">
 </head>
 <body>
 
@@ -37,17 +37,24 @@
       <div class="col-sm-3 col-md-offset-1">
         <div class="panel"  draggable="true">
         <p>ここにスケジューラー（1日分）</p>
+        <div id="message" class="ui-corner-all"></div>
+      	<div id="calendar_selection" class="ui-corner-all">
+      		<strong>登録された予定の確認</strong>
+      		<select id="data_source">
+      		</select>
+      	</div>
+      	<div id='calendar'></div>
       </div>
       </div>
-
     </div>
   </div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
-<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
-<script src='./libs/jquery-week-calender-master/jquery-ui-1.8rc3.custom.min.js'></script>
-<script src="./jquery-week-calender-master/jquery.weekcalendar.js"></script>
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+<script type='text/javascript' src='./jquery-ui-1.8rc3.custom.min.js'></script>
+<script type='text/javascript' src='./jquery.weekcalendar.js'></script>
 
 <script type="text/javascript">
 // ▼グラフの中身(体重)
@@ -87,6 +94,64 @@ window.onload = function(){
   var ctx2 = document.getElementById("weight").getContext("2d");
   window.myLine = new Chart(ctx2).Line(lineChartData);
 }
+
+//カレンダー
+var year = new Date().getFullYear();
+var month = new Date().getMonth();
+var day = new Date().getDate();
+
+$(document).ready(function() {
+
+  var $calendar = $('#calendar').weekCalendar({
+    timeslotsPerHour: 4,
+    scrollToHourMillis : 6,
+    height: function($calendar){
+      return $(window).height() - $("h1").outerHeight(true);
+    },
+    eventRender : function(calEvent, $event) {
+      if(calEvent.end.getTime() < new Date().getTime()) {
+        $event.css("backgroundColor", "#aaa");
+        $event.find(".time").css({"backgroundColor": "#999", "border":"1px solid #888"});
+      }
+    },
+    eventNew : function(calEvent, $event) {
+      alert("You've added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.");
+    },
+    data: function(start, end, callback) {
+
+      var dataSource = $("#data_source").val();
+      if(dataSource === "1") {
+        callback(eventData1);
+      } else if(dataSource === "2") {
+        callback(eventData2);
+      } else {
+        callback([]);
+      }
+          }
+  });
+
+  $("#data_source").change(function() {
+    $calendar.weekCalendar("refresh");
+    updateMessage();
+
+  });
+
+  function updateMessage() {
+    var dataSource = $("#data_source").val();
+    $("#message").fadeOut(function(){
+      if(dataSource === "1") {
+        $("#message").text("Displaying event data set 1 with timeslots per hour of 4 and timeslot height of 20px");
+      } else if(dataSource === "2") {
+        $("#message").text("Displaying event data set 2 with timeslots per hour of 3 and timeslot height of 30px");
+      } else {
+        $("#message").text("Displaying no events.");
+      }
+      $(this).fadeIn();
+    });
+  }
+  updateMessage();
+
+});
 
 //D&D可能
 
