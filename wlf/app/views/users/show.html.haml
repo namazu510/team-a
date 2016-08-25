@@ -1,5 +1,15 @@
-%p#notice= notice
-
+= stylesheet_link_tag "root", :media => "all"
+%body
+  %nav.navbar.navbar-default{role: "navigation"}
+    .container-fluid
+      .navbar-header
+        %a.navbar-brand{href: "/"}
+          = image_tag "logo.png", :size => "50x32"
+      .collapse.navbar-collapse{id: "nav_targets"}
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: "#{logout_path}"}
+              Log out
 %p
   %b Name:
   = @user.name
